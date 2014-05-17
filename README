@@ -1,0 +1,33 @@
+Build:
+LiveScript
+
+Run:
+ncurses
+
+Directions:
+
+   u k
+  h @ l
+   j m
+
+Movements, attack: <direction>
+
+Throw: t<direction>
+
+Magic: z<direction>
+
+Aim: a<action><direction>...
+
+Rest: r
+
+Search: s
+
+Drink potion
+Read scroll
+Zap wand
+
+Resistance
+Strength
+
+water, wall, ground, grass, ...
+

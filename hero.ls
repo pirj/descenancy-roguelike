@@ -8,9 +8,13 @@ class Hero
     @seen-map = {}
 
   move: (dx, dy) ->
-    if @can-move @x + dx, @y + dy
+    can-move = @can-move @x + dx, @y + dy
+    if can-move
       @x += dx
       @y += dy
+      true
+    else
+      false
 
   can-move: (x, y) ~>
     @world.passes x, y

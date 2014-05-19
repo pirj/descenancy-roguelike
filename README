@@ -4,12 +4,27 @@ LiveScript
 Run:
 prelude-ls
 ncurses
+  switch to blessed eventually
 
 Directions:
 
    u k
   h @ l
    n j
+
+QWEASD? (reddit comment) rotate 90°?
+
+ u k i
+   @ 
+ h j l
+
+ u i o
+   @
+ j k l
+
+ q w e
+   @
+ a s d
 
 Modifiers:
   <number> | g
@@ -37,3 +52,8 @@ http://ondras.github.io/rot.js/manual/
 http://unicode-table.com/en
 http://jrgraphix.net/r/Unicode/25A0-25FF
 http://jrgraphix.net/r/Unicode/2580-259F
+
+http://www.paperspencils.com/tag/my-games/
+
+http://www-cs-students.stanford.edu/~amitp/game-programming/polygon-map-generation/
+http://www.playfuljs.com/realistic-terrain-in-130-lines/

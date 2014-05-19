@@ -6,10 +6,42 @@ class World
   width: 120
   height: 50
 
+  noise-gen = ->
+    noise = new ROT.Noise.Simplex()
+    (x, y) ->
+      noise.get(x / 50, y / 50)
+
+  noise-gen-positive = ->
+    noise = new ROT.Noise.Simplex()
+    (x, y) ->
+      (noise.get(x / 50, y / 50) + 1) / 2
+
   (@hero) ->
     @relief = new Map @width, @height
-    @liquid = new Map @width, @height
+    @ground = noise-gen()
+    @liquid = noise-gen()
+    @garbage = noise-gen()
+    @garbage = noise-gen()
+    @atmosphere = noise-gen-positive()
+    @radiance = noise-gen-positive()
+    @heat = noise-gen-positive()
     @hero.add-world this
+
+  char-at: (x, y, visible = false) ->
+    if @relief.passes x, y
+      r = 0
+      g = 1
+      b = 1
+      if @liquid(x, y) > 0
+        char = ';;'
+        g = 4
+      else
+        char = '::'
+      color = 16 + r*36 + g*6 + b + visible * (36 + 6 + 1)
+    else
+      char = '##'
+      color = 236 + visible * 4
+    { char: char, color: color }
 
   passes: (x, y) ->
     @relief.passes x, y
@@ -24,38 +56,12 @@ class World
       for y to @height
         if _.even x + y
           if @hero.seen x, y
-            r = 1
-            g = 1
-            b = 1
-            if @relief.passes x, y
-              char = ':'
-              r = r + 1
-              if @liquid.passes x, y
-                b = 6
-                r = 0
-                g = 0
-            else
-              char = '#'
-              g = g + 1
-            color = r * 36 + g * 6 + b + 16
-            at x, y, char, color
+            char = @char-at x, y
+            at x, y, char.char, char.color
     @omniscience-field-of-view @hero.x, @hero.y, 6, @hero.can-move, (x, y, r, vis) ~>
       if _.even x + y
         @hero.see x, y
-        r = 2
-        g = 2
-        b = 2
-        if @relief.passes x, y
-          char = ':'
-          r = r + 2
-          if @liquid.passes x, y
-            b = 6
-            g = 1
-            r = 1
-        else
-          char = '#'
-          g = g + 2
-        color = r * 36 + g * 6 + b + 16
-        at x, y, char, color
+        char = @char-at x, y, true
+        at x, y, char.char, char.color
 
 module.exports = World

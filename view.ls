@@ -1,4 +1,4 @@
-nc = require 'ncurses'
+nc = require('ncurses')
 
 class View
   (@displayables) ->
@@ -11,21 +11,12 @@ class View
     @win.close()
     nc.leave()
 
-  at: (x, y, char, color, double = true) ~>
-    nc.color-pair color, color, 232
-    @win.attrset nc.color-pair color
+  at: (x, y, char, fg) ~>
+    nc.color-pair fg, fg, 232
+    @win.attrset nc.color-pair fg
     @win.addstr y, x, char
-    if double
-      @win.addstr y, x + 1, char
 
   redraw: ~>
-    for r to 5
-      for g to 5
-        for b to 5
-          color = r * 36 + g * 6 + b + 16
-          @at 100 + r * 8 + g, b, '.', color
-          @at 100 + g * 8 + r, 10 + b, '.', color
-          @at 100 + b * 8 + g, 20 + r, '.', color
     nc.show-cursor = false
     @win.refresh
 

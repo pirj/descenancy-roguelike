@@ -1,4 +1,3 @@
-nc = require 'ncurses'
 until-stuck-condition = (could-move) ->
   if could-move
     until-stuck-condition
@@ -30,8 +29,8 @@ move = (view, hero, direction, condition) ->
 
 input-listener = (hero, view) ->
   modifier = once-condition
-  (c, i) ->
-    if i == nc.keys.ESC
+  (c, key) ->
+    if key == 'escape'
       modifier := once-condition
     else if c == 'g'
       modifier := until-stuck-condition

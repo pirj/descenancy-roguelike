@@ -12,8 +12,6 @@ class Hero
       @x += dx
       @y += dy
       true
-    else
-      false
 
   can-move: (x, y) ~>
     @world.passes x, y
@@ -28,6 +26,6 @@ class Hero
     @seen-map[x+','+y]
 
   display: (at) ->
-    at @x, @y, '@-', 253, false
+    at @x, @y, '@-', 253
 
 module.exports = Hero

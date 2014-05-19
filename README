@@ -16,8 +16,6 @@ Modifiers:
 
 Movements, attack: <direction>
 
-water, wall, ground, grass, ...
-
 ## Dev resources:
 NodeJS+npm
 http://livescript.net/#introduction
@@ -35,3 +33,7 @@ http://dillingers.com/blog/2014/05/16/roguelike-ai-6/
 http://ondras.github.io/rot.js/hp/
 http://www.roguebasin.roguelikedevelopment.org/index.php?title=Rot.js_tutorial
 http://ondras.github.io/rot.js/manual/
+
+http://unicode-table.com/en
+http://jrgraphix.net/r/Unicode/25A0-25FF
+http://jrgraphix.net/r/Unicode/2580-259F

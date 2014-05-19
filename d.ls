@@ -3,9 +3,9 @@ View = require './view'
 Hero = require './hero'
 input-listener = require './input'
 
-world = new World
-hero = new Hero world
-view = new View world, hero
+hero = new Hero
+world = new World hero
+view = new View([world, hero])
 
 view.add-input-listener input-listener(hero, view)
 

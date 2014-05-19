@@ -1,7 +1,7 @@
 nc = require 'ncurses'
 
 class View
-  (@world, @hero) ->
+  (@displayables) ->
     @win = new nc.Window()
 
   add-input-listener: (listener) ->
@@ -24,8 +24,8 @@ class View
     @win.refresh
 
   display: ~>
-    @world.display @at
-    @hero.display @at
+    for displayable in @displayables
+      displayable.display @at
     @redraw()
 
 module.exports = View

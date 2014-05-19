@@ -28,6 +28,6 @@ class Hero
     @seen-map[x+','+y]
 
   display: (at) ->
-    at @x, @y, '@-', 246, false
+    at @x, @y, '@-', 253, false
 
 module.exports = Hero

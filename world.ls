@@ -7,11 +7,12 @@ class World
   height: 50
 
   (@hero) ->
-    @terrain = new Map @width, @height
+    @relief = new Map @width, @height
+    @liquid = new Map @width, @height
     @hero.add-world this
 
   passes: (x, y) ->
-    @terrain.passes x, y
+    @relief.passes x, y
 
   # TODO: switch to Recursive shadowcasting with direction and viewing angle
   omniscience-field-of-view: (x, y, r, passes, callback) ~>
@@ -23,16 +24,38 @@ class World
       for y to @height
         if _.even x + y
           if @hero.seen x, y
-            if @passes x, y
-              at x, y, '-', 236
+            r = 1
+            g = 1
+            b = 1
+            if @relief.passes x, y
+              char = ':'
+              r = r + 1
+              if @liquid.passes x, y
+                b = 6
+                r = 0
+                g = 0
             else
-              at x, y, '#', 234
+              char = '#'
+              g = g + 1
+            color = r * 36 + g * 6 + b + 16
+            at x, y, char, color
     @omniscience-field-of-view @hero.x, @hero.y, 6, @hero.can-move, (x, y, r, vis) ~>
       if _.even x + y
         @hero.see x, y
-        if @passes x, y
-          at x, y, '.', 244
+        r = 2
+        g = 2
+        b = 2
+        if @relief.passes x, y
+          char = ':'
+          r = r + 2
+          if @liquid.passes x, y
+            b = 6
+            g = 1
+            r = 1
         else
-          at x, y, '#', 242
+          char = '#'
+          g = g + 2
+        color = r * 36 + g * 6 + b + 16
+        at x, y, char, color
 
 module.exports = World

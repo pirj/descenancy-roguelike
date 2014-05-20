@@ -11,9 +11,9 @@ class View
     @win.close()
     nc.leave()
 
-  at: (x, y, char, fg) ~>
-    nc.color-pair fg, fg, 232
-    @win.attrset nc.color-pair fg
+  at: (x, y, char, color) ~>
+    nc.color-pair color, 232, color
+    @win.attrset nc.color-pair color
     @win.addstr y, x, char
 
   redraw: ~>

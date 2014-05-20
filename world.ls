@@ -60,7 +60,7 @@ class World
             at x, y, char.char, char.color
     @omniscience-field-of-view @hero.x, @hero.y, 6, @hero.can-move, (x, y, r, vis) ~>
       if _.even x + y
-        @hero.see x, y
+        # @hero.see x, y
         char = @char-at x, y, true
         at x, y, char.char, char.color
 

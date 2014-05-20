@@ -1,4 +1,5 @@
 _ = require 'prelude-ls'
+ROT = require './lib/rot'
 
 class Hero
   ->
@@ -11,6 +12,7 @@ class Hero
     if can-move
       @x += dx
       @y += dy
+      @see-from @x, @y
       true
 
   can-move: (x, y) ~>
@@ -18,6 +20,15 @@ class Hero
 
   add-world: (world) ->
     @world = world
+
+  omniscience-field-of-view: (x, y, r, passes, callback) ~>
+    fov = new ROT.FOV.PreciseShadowcasting passes, { topology: 6 }
+    fov.compute x, y, r, callback
+
+  see-from: (x, y) ~>
+    @omniscience-field-of-view x, y, 6, @can-move, (x, y, r, vis) ~>
+      if _.even x + y
+        @see x, y
 
   see: (x, y) ~>
     @seen-map[x+','+y] = true

@@ -30,14 +30,17 @@ class World
   char-at: (x, y, visible = false) ->
     if @relief.passes x, y
       r = 0
-      g = 1
-      b = 1
+      g = 0
+      b = 0
       if @liquid(x, y) > 0
         char = ';;'
-        g = 4
+        b = 2 + visible * 1
       else
         char = '::'
-      color = 16 + r*36 + g*6 + b + visible * (36 + 6 + 1)
+        r = 1 + visible * 1
+        g = 1 + visible * 1
+        b = 1 + visible * 1
+      color = 16 + r*36 + g*6 + b
     else
       char = '##'
       color = 236 + visible * 4

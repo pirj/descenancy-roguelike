@@ -4,7 +4,9 @@ class Map
   (w, h) ->
     data = {}
     map = new ROT.Map.Cellular w, h, { born: [4, 5, 6], survive: [3, 4, 5, 6], topology: 6 }
-    map.randomize 0.48
+    map.randomize 0.43
+    for _ to 10
+      map.create
     map.create (x, y, value) ->
       data[x+","+y] = value
     @data = data

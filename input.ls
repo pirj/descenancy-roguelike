@@ -14,8 +14,10 @@ directions =
   h: {dx:-2, dy: 0}
   u: {dx:-1, dy:-1}
   k: {dx: 1, dy:-1}
+  i: {dx: 1, dy:-1}
   l: {dx: 2, dy: 0}
   j: {dx: 1, dy: 1}
+  m: {dx: 1, dy: 1}
   n: {dx:-1, dy: 1}
 
 multipliers = { [repeats, until-stuck-with-limit-condition(repeats - 1)] for repeats in [1 to 9] }
@@ -24,8 +26,8 @@ move = (view, hero, direction, condition) ->
   while condition
     shift = directions[direction]
     could-move = hero.move shift.dx, shift.dy
-    view.display()
     condition = condition(could-move)
+  view.display()
 
 input-listener = (hero, view) ->
   modifier = once-condition

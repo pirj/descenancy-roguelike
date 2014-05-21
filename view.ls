@@ -1,7 +1,7 @@
 nc = require('ncurses')
 
 class View
-  (@displayables) ->
+  (@world) ->
     @win = new nc.Window()
 
   add-input-listener: (listener) ->
@@ -11,9 +11,9 @@ class View
     @win.close()
     nc.leave()
 
-  at: (x, y, char, color) ~>
-    nc.color-pair color, 232, color
-    @win.attrset nc.color-pair color
+  at: (x, y, char, fg, bg = 232) ~>
+    nc.color-pair fg, fg, bg
+    @win.attrset nc.color-pair fg
     @win.addstr y, x, char
 
   redraw: ~>
@@ -21,8 +21,7 @@ class View
     @win.refresh
 
   display: ~>
-    for displayable in @displayables
-      displayable.display @at
+    @world.display @at
     @redraw()
 
 module.exports = View

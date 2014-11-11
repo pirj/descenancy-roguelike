@@ -12,6 +12,9 @@ Directions:
   h @ l
    m j
 
+Screenshot:
+![screenshot](screenshot.png)
+
 QWEASD? (reddit comment) rotate 90°?
 
  u k i

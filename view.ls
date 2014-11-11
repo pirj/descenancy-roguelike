@@ -3,9 +3,7 @@ nc = require('ncurses')
 class View
   (@world) ->
     @win = new nc.Window()
-
-  add-input-listener: (listener) ->
-    @win.on \inputChar, listener
+    @win.on \inputChar, world.input
 
   cleanup: ->
     @win.close()

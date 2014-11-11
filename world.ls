@@ -39,7 +39,7 @@ world = ->
           char = hero.display(x, y, visible, seen) || relief.display(x,y,visible,seen) || smoke.display(x, y, visible, seen) || liquid.display(x, y, visible, seen) || ground.display(x, y, visible, seen)
           if char
             at x, y, char.char, char.fg || 242
-  hero: ->
-    hero
+  move-hero: (dx, dy) ->
+    hero.move dx, dy
 
 module.exports = world
